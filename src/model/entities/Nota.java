@@ -2,13 +2,13 @@ package model.entities;
 
 public class Nota {
     private Double basicPayment;
-    private Double tax;
+    private Double taxa;
 
     public Nota(){
     }
-    public Nota(Double basicPayment, Double tax) {
+    public Nota(Double basicPayment, Double taxa) {
         this.basicPayment = basicPayment;
-        this.tax = tax;
+        this.taxa = taxa;
     }
 
     public Double getBasicPayment() {
@@ -20,13 +20,13 @@ public class Nota {
     }
 
     public Double getTax() {
-        return tax;
+        return taxa;
     }
 
-    public void setTax(Double tax) {
-        this.tax = tax;
+    public void setTax(Double taxa) {
+        this.taxa = taxa;
     }
     public Double getTotalPayment(){
-        return basicPayment - tax;
+        return basicPayment + taxa;
     }
 }

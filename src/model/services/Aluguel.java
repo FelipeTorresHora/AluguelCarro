@@ -2,18 +2,17 @@ package model.services;
 
 import model.entities.AluguelCarro;
 import model.entities.Nota;
-
 import java.time.Duration;
 
 public class Aluguel {
     private Double precohora;
     private Double precodia;
-    private BrasilImposto taxaservico;
+    private Imposto imposto;
 
-    public Aluguel(Double precohora, Double precodia, BrasilImposto taxaservico){
+    public Aluguel(Double precohora, Double precodia, Imposto imposto){
         this.precohora = precohora;
         this.precodia = precodia;
-        this.taxaservico = taxaservico;
+        this.imposto = imposto;
 }
     public void fazendonota(AluguelCarro aluguelCarro){
         double minuto = Duration.between(aluguelCarro.getInicio(), aluguelCarro.getFim()).toMinutes();
@@ -27,7 +26,7 @@ public class Aluguel {
             basicPayment = precohora * Math.ceil(hora/24.0);
         }
 
-        double taxa = taxaservico.taxa(basicPayment);
+        double taxa = imposto.taxa(basicPayment);
         aluguelCarro.setNota(new Nota(basicPayment, taxa));
     }
 }
